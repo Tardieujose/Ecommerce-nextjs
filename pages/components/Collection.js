@@ -31,7 +31,7 @@ export default function Collection({ product }) {
                     <p className="mt-4 text-gray-500">
                       {product.description}
                     </p>
-                    <p className="mt-1 text-lg text-primary">ksh. {formatPrice(product.price)}</p>
+                    <p className="mt-1 text-lg text-primary">ARS$ {formatPrice(product.price)}</p>
                   </header>
 
                   <Link
@@ -47,15 +47,17 @@ export default function Collection({ product }) {
                 <ul className="grid grid-cols-2 gap-4">
                   <li>
                     <div className="block group">
+                    <Link href={'/products/' + product._id}>
                       <img
                         src={product.images[0]}
                         alt=""
                         className="object-cover w-full rounded aspect-square"
                       />
+                    </Link>  
                     </div>
                   </li>
 
-                  <li>
+                  {/* <li>
                     <div  className="block group">
                       <img
                         src={product.images[1]}
@@ -63,7 +65,7 @@ export default function Collection({ product }) {
                         className="object-cover w-full rounded aspect-square"
                       />
                     </div>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>

@@ -59,15 +59,18 @@ export default function Cart() {
   function increaseProduct(id) {
     addProduct(id);
   }
-
+  
   function decreaseProduct(id) {
     removeProduct(id);
     toast.success('Removed product!!')
   }
-  function deleteCart(id) {
-    clearCart();
-    toast.success('Cart cleared!!')
-  }
+  
+  // Elimina esta función deleteCart, ya que está eliminando todos los productos del carrito en lugar de reducir la cantidad de cada producto.
+  
+  // function deleteCart(id) {
+  //   clearCart();
+  //   toast.success('Cart cleared!!')
+  // }
 
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -175,7 +178,7 @@ export default function Cart() {
                         </div>
                         <div className="flex justify-between">
                           <dt>Subtotal</dt>
-                          <dd>Ksh. {formatPrice(total)}</dd>
+                          <dd>ARS$ {formatPrice(total)}</dd>
                         </div>
 
                         <strike className="flex justify-between">

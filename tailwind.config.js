@@ -13,6 +13,8 @@ module.exports = {
         'primary': '#e7821d',
         'secondary': '#b4b4f3',
         'accent': '#232F3E',
+        bgWolf: '#79cec2',
+        colWolf: '#36526a',
        },
        
     },

@@ -1,28 +1,68 @@
 import { CartContext } from "@/lib/CartContext";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 
 const formatPrice = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
+function QuantitySelector({ onChange }) {
+  const [quantity, setQuantity] = useState(1);
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      onChange(quantity - 1);
+    }
+  };
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+    onChange(quantity + 1);
+  };
+
+  return (
+    <div className="flex items-center">
+      <button className="bg-gray-200 px-2 py-1 rounded-l" onClick={decreaseQuantity}>
+        -
+      </button>
+      <span className="px-2">{quantity}</span>
+      <button className="bg-gray-200 px-2 py-1 rounded-r" onClick={increaseQuantity}>
+        +
+      </button>
+    </div>
+  );
+}
+
 export default function ProductPage({ product }) {
-  const { addProduct } = useContext(CartContext)
+  const { addProduct } = useContext(CartContext);
+  const [cartQuantity, setCartQuantity] = useState(1);
+
+  const handleQuantityChange = (newQuantity) => {
+    setCartQuantity(newQuantity);
+  };
+
+  const handleAddToCart = () => {
+    console.log("Adding to cart:", product._id, cartQuantity);
+    addProduct(product._id, cartQuantity); // Aquí pasamos la cantidad seleccionada a la función addProduct
+    toast.success('Item added to cart!!');
+  };
+
   if (product) {
     return (
-      <section className="mt-20 md:mt-6 ">
+      <section className="mt-20 md:mt-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Image section */}
           <div className="lg:aspect-h-2 lg:aspect-w-2 lg:rounded-lg overflow-hidden px-4 md:px-2">
             <img
               src={product.images[0]}
               alt={product.images[0]}
-              className="w-full h-full md:h-[90vh] object-cover object-center border border-primary rounded-lg"
+              className="w-full h-full md:h-[90vh] object-cover object-center border border-secondary rounded-lg"
             />
           </div>
-          <div className="grid grid-cols-2 lg:grid lg:grid-cols-1 lg:gap-y-4 px-2 gap-2 md:gap-0 md:px-2">
+          <div className="grid grid-cols-2 lg:grid lg:grid-cols-1 lg:gap-y-4 px-2 gap-2 md:gap-0 md:px-14">
             {product.images.slice(1, 3).map((image, index) => (
               <div
                 key={index}
@@ -51,7 +91,7 @@ export default function ProductPage({ product }) {
                 {product?.details}
               </p>
             </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
               <div>
                 <label className="text-text font-semibold">Brand</label>
                 <p className="mt-2 text-accent list-disc list-inside">
@@ -67,7 +107,7 @@ export default function ProductPage({ product }) {
               </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
               <div>
                 <label className="text-text font-semibold">Sizes</label>
                 <p className="mt-2 text-accent list-disc list-inside">
@@ -76,32 +116,25 @@ export default function ProductPage({ product }) {
               </div>
 
               <div>
-                <label className="text-text font-semibold">Colors</label>
-                <p className="mt-2 text-accent list-disc list-inside">
-                  {product?.colors}
-                </p>
+                <label className="text-text font-semibold">Cantidad</label>
+                <QuantitySelector onChange={handleQuantityChange} />
               </div>
             </div>
 
             <div className="mt-4 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Price</h2>
-              <p className="mt-2 text-primary font-semibold text-lg">
-                Ksh {formatPrice(product.price)}
+              <p className="mt-2 text-bgWolf font-semibold text-lg">
+                ARS$ {formatPrice(product.price)}
               </p>
             </div>
             <div className="w-full">
               <button
-                className="bg-primary text-white py-2 px-4 mt-4 rounded-md hover:bg-primary-dark w-full"
-                onClick={() => {addProduct(product._id);
-                  toast.success('Item added to cart!!')}}
+                className="bg-colWolf text-white py-2 px-4 mt-4 rounded-md hover:bg-primary-dark w-full"
+                onClick={handleAddToCart} // Aquí llamamos a la función handleAddToCart al hacer clic en el botón
               >
                 Add to Cart
               </button>
             </div>
-
-
-
-
           </div>
         </div>
       </section>

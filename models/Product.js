@@ -4,6 +4,11 @@ const ProductSchema = new Schema({
   title: {type:String, required:true},
   description: {type:String, required:true},
   price: {type: Number, required: true},
+  details: {type:String},
+  brand: {type:String},
+  cantidad: {type: Number, required: true},
+  sizes: {type:String},
+  gender: {type:String},
   images: [{type: String}],
   category: {type:mongoose.Types.ObjectId, ref:'Category'},
 });
