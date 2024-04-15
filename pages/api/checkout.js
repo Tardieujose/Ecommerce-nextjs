@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         {
           quantity,
           price_data: {
-            currency: 'KES',
+            currency: 'USD',
             product_data: { name: productInfo.title },
             unit_amount: quantity * productInfo.price * 100 ,
           },
