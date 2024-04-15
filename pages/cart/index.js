@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../../lib/CartContext"
+import { useRouter } from 'next/router';
 import axios from "axios";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
@@ -19,6 +20,13 @@ export default function Cart() {
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const [isSuccess, setIsSuccess] = useState(false)
+
+  const router = useRouter();
+
+  function redirectToSuccessPage() {
+    clearCart();
+    router.push('/components/Success');
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -175,17 +183,17 @@ export default function Cart() {
                         </div>
                         <div className="flex justify-between">
                           <dt>Subtotal</dt>
-                          <dd>Ksh. {formatPrice(total)}</dd>
+                          <dd>ARS$ {formatPrice(total)}</dd>
                         </div>
 
                         <strike className="flex justify-between">
                           <dt>VAT</dt>
-                          <dd>ksh. {formatPrice(total / 1000)}</dd>
+                          <dd>ARS$ {formatPrice(total / 1000)}</dd>
                         </strike>
 
                         <div className="flex justify-between !text-base font-medium">
                           <dt>Total</dt>
-                          <dd>Ksh. {formatPrice(total)}</dd>
+                          <dd>ARS$ {formatPrice(total)}</dd>
 
                         </div>
                       </dl>
@@ -284,7 +292,7 @@ export default function Cart() {
                   </div>
                   <div class="col-span-12 text-center w-full">
                     <button
-                      onClick={stripeCheckout}
+                      onClick={redirectToSuccessPage}
                       className="disabled block rounded bg-secondary px-5 py-3 text-md text-text transition hover:bg-purple-300 w-full"
                     >
                       Checkout

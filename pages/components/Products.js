@@ -22,17 +22,18 @@ export default function Products({ products }) {
               <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
                 <div className="p-1">
                   <div className="relative h-[300px] sm:h-[300px]">
-                    <img
-                      src={product.images[0]}
-                      alt=""
-                      className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
-                    />
-
-                    <img
-                      src={product.images[1]}
-                      alt=""
-                      className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
-                    />
+                    <Link href={'/products/' + product._id}>
+                      <img
+                        src={product.images[0]}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0 rounded-3xl"
+                      />                    
+                      <img
+                        src={product.images[1]}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
+                      />
+                    </Link>
                   </div>
 
                   <div className="relative  p-3 border-t">
@@ -45,7 +46,7 @@ export default function Products({ products }) {
                     </Link>
 
                     <div className="mt-1.5 flex items-center justify-between text-text">
-                      <p className="tracking-wide text-primary">ksh. {formatPrice(product.price)}</p>
+                      <p className="tracking-wide text-colWolf">ARS$ {formatPrice(product.price)}</p>
 
 
                       <button onClick={() => {addProduct(product._id);
