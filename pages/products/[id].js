@@ -76,9 +76,9 @@ export default function ProductPage({ product }) {
               </div>
 
               <div>
-                <label className="text-text font-semibold">Colors</label>
+                <label className="text-text font-semibold">Cantidad</label>
                 <p className="mt-2 text-accent list-disc list-inside">
-                  {product?.colors}
+                  {product?.cantidad}
                 </p>
               </div>
             </div>
