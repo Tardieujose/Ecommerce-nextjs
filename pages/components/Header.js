@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../lib/CartContext";
 import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -11,6 +11,9 @@ export default function Header() {
   const router = useRouter();
   const { pathname } = router;
   const { data: session } = useSession()
+  const handleLogout = () => {
+    signOut();
+  };
 
   useEffect(() => {
     // Update the currentPath state on client side
@@ -27,14 +30,13 @@ export default function Header() {
   return <>
     <header className="bg-white sticky top-0 z-40 w-full px-2 md:px-4">
       <div
-        className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 border-b border-primary border-opacity-40"
+        className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 border-b border-bgWolf border-opacity-40"
       >
-        <Link className="flex gap-1 items-center text-text font-medium text-lg hover:text-primary " href="/">
+        <Link className="flex gap-1 items-center text-text font-medium text-lg hover:text-bgWolf " href="/">
 
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
-          </svg>
-          <span> / MyShop</span>
+        <img src="/BadWolf.png" alt="Descripción de la imagen" className="w-14 h-14" />
+
+          <span>Bad Wolf</span>
 
         </Link>
 
@@ -42,19 +44,19 @@ export default function Header() {
           <nav aria-label="Global" className="hidden md:block">
             <ul className="flex items-center gap-6 text-md">
               <li>
-                <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? 'text-primary' : ""} `} href="/">
+                <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? 'text-bgWolf' : ""} `} href="/">
                   Home
                 </Link>
               </li>
 
               <li>
-                <Link className={`text-accent transition hover:text-accent/75 ${pathname === ('/products') ? 'text-primary' : ""} `} href="/products">
+                <Link className={`text-accent transition hover:text-accent/75 ${pathname === ('/products') ? 'text-bgWolf' : ""} `} href="/products">
                   All Products
                 </Link>
               </li>
 
               <li>
-                <select className={`text-accent transition hover:text-accent/75 ${pathname === ('/categories') ? 'text-primary' : ""} `} href="/categories">
+                <select className={`text-accent transition hover:text-accent/75 ${pathname === ('/categories') ? 'text-bgWolf' : ""} `} href="/categories">
                   <option value="0">Categories</option>
                   <option value="1">Shoes</option>
                 </select>
@@ -68,19 +70,21 @@ export default function Header() {
           <div className="flex items-center gap-2">
 
             {session ? (
-              <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
+              <div className="sm:flex sm:gap-2 border-r border-bgWolf pr-4" onClick={handleLogout} >
                 <div class="h-9 w-9">
                   <img class="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} />
                 </div>
+                <button
+                  className="inline-block px-5 py-3 text-sm font-medium text-text hover:bg-bgWolf rounded-md focus:outline-none focus:ring">Logout</button>
               </div>
             ) : (
-              <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
-                <Link
-                  className=" text-md font-medium text-text hidden md:flex"
-                  href="/"
+              <div className="sm:flex sm:gap-2 border-r pr-4">
+                <button
+                  onClick={() => signIn('google')}
+                  className="inline-block px-5 py-3 text-sm font-medium text-text hover:bg-bgWolf rounded-md focus:outline-none focus:ring"
                 >
-                  Account
-                </Link>
+                  Login / Register
+                </button>
                 <Link
                   className=" text-md font-medium text-text hidden max-md:flex md:hidden"
                   href="/"
@@ -195,7 +199,7 @@ export default function Header() {
       <div className="inline-flex gap-8 p-1">
         <Link
           href={'/'}
-          className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-md text-accent hover:text-gray-700 focus:relative ${pathname === ('/') ? 'text-primary' : ""} `}
+          className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-md text-accent hover:text-gray-700 focus:relative ${pathname === ('/') ? 'text-bgWolf' : ""} `}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -207,7 +211,7 @@ export default function Header() {
 
         <Link
           href={'/products'}
-          className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-md text-accent hover:text-gray-700 focus:relative ${pathname === ('/products') ? 'text-primary' : ""} `}
+          className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-md text-accent hover:text-gray-700 focus:relative ${pathname === ('/products') ? 'text-bgWolf' : ""} `}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
@@ -219,7 +223,7 @@ export default function Header() {
 
         <Link
           href={'/cart'}
-          className={`inline-flex items-center gap-2 rounded-md  px-4 py-2 text-md   ${pathname === ('/cart') ? 'text-primary' : ""} `}
+          className={`inline-flex items-center gap-2 rounded-md  px-4 py-2 text-md   ${pathname === ('/cart') ? 'text-bgWolf' : ""} `}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
