@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../../lib/CartContext"
-import { useRouter } from 'next/router';
 import axios from "axios";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
 import { signIn, signOut, useSession } from "next-auth/react"
 import Success from "../components/Success";
 import toast from "react-hot-toast";
+import { useRouter } from 'next/router';
 
 export default function Cart() {
   const { cartProducts, removeProduct, addProduct, clearCart } = useContext(CartContext);
@@ -20,13 +20,7 @@ export default function Cart() {
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const [isSuccess, setIsSuccess] = useState(false)
-
   const router = useRouter();
-
-  function redirectToSuccessPage() {
-    clearCart();
-    router.push('/components/Success');
-  }
 
   useEffect(() => {
     setLoading(true);
@@ -51,6 +45,11 @@ export default function Cart() {
       clearCart();
     }
   }, []);
+
+  function redirectToSuccessPage() {
+    clearCart();
+    router.push('/components/Success');
+  }
 
   let total = 0;
   for (const productId of cartProducts) {
@@ -82,16 +81,42 @@ export default function Cart() {
   };
 
   async function stripeCheckout() {
-    const response = await axios.post('/api/checkout', {
-      email: session.user.email, name: session.user.name, address, country, zip, city, cartProducts
-    });
-
-    if (response.data.url) {
-      window.location = response.data.url
-    } else {
-      toast.error('An error occured!!')
+    try {
+      const response = await axios.post('/api/checkout', {
+        email: session.user.email,
+        name: session.user.name,
+        address,
+        country,
+        zip,
+        city,
+        cartProducts,
+      });
+  
+      if (response.data.success) {
+        toast.success('Order placed successfully!');
+        redirectToSuccessPage();
+      } else {
+        toast.error('Failed to place order. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error saving to MongoDB:', error);
+      // toast.error('An error occurred while placing the order.');
     }
   }
+  
+
+  
+  // async function stripeCheckout() {
+  //   const response = await axios.post('/api/checkout', {
+  //     email: session.user.email, name: session.user.name, address, country, zip, city, cartProducts
+  //   });
+
+  //   if (response.data.url) {
+  //     window.location = response.data.url
+  //   } else {
+  //     toast.error('An error occured!!')
+  //   }
+  // }
 
   if (isSuccess) {
     return <>
@@ -183,17 +208,17 @@ export default function Cart() {
                         </div>
                         <div className="flex justify-between">
                           <dt>Subtotal</dt>
-                          <dd>ARS$ {formatPrice(total)}</dd>
+                          <dd>Ksh. {formatPrice(total)}</dd>
                         </div>
 
                         <strike className="flex justify-between">
                           <dt>VAT</dt>
-                          <dd>ARS$ {formatPrice(total / 1000)}</dd>
+                          <dd>ksh. {formatPrice(total / 1000)}</dd>
                         </strike>
 
                         <div className="flex justify-between !text-base font-medium">
                           <dt>Total</dt>
-                          <dd>ARS$ {formatPrice(total)}</dd>
+                          <dd>Ksh. {formatPrice(total)}</dd>
 
                         </div>
                       </dl>
@@ -292,7 +317,7 @@ export default function Cart() {
                   </div>
                   <div class="col-span-12 text-center w-full">
                     <button
-                      onClick={redirectToSuccessPage}
+                      onClick={stripeCheckout}
                       className="disabled block rounded bg-secondary px-5 py-3 text-md text-text transition hover:bg-purple-300 w-full"
                     >
                       Checkout
@@ -317,7 +342,7 @@ export default function Cart() {
 
         <button
           onClick={() => signIn('google')}
-          className="inline-block px-5 py-3 mt-6 text-sm font-medium text-text bg-primary rounded hover:bg-primary focus:outline-none focus:ring"
+          className="inline-block px-5 py-3 mt-6 text-sm font-medium text-text bg-bgWolf rounded hover:bg-bgWolf focus:outline-none focus:ring"
         >
           Login / Register
         </button>
