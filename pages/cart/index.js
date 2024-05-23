@@ -63,12 +63,65 @@ export default function Cart() {
     subTotal = total + total / 1000;
   }
 
+  async function getAllProducts() {
+    try {
+      const response = await axios.get('http://localhost:3001/api/products');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      throw error;
+    }
+  }
+  
+
+  function updateProductQuantity(products, productId, newQuantity) {
+    const updatedProducts = products.map(product => {
+      if (product._id === productId) {
+        return { ...product, cantidad: newQuantity };
+      }
+      return product;
+    });
+    return updatedProducts;
+  }
+  
+
+  async function updateProductsOnServer(updatedProducts) {
+    try {
+      await axios.put('http://localhost:3001/api/products', updatedProducts);
+      console.log('Products updated successfully');
+    } catch (error) {
+      console.error('Error updating products:', error);
+      throw error;
+    }
+  }
+  
+
+  async function updateProductQuantityAndSave(productId, newQuantity) {
+    try {
+      // Paso 1: Obtener todos los productos
+      const allProducts = await getAllProducts();
+  
+      // Paso 2: Modificar la cantidad del producto específico
+      const updatedProducts = updateProductQuantity(allProducts, productId, newQuantity);
+  
+      // Paso 3: Actualizar la información modificada en el servidor
+      await updateProductsOnServer(updatedProducts);
+    } catch (error) {
+      console.error('Error updating product quantity and saving:', error);
+      throw error;
+    }
+  }
+  
+  
+
   function increaseProduct(id) {
     addProduct(id);
+    updateProductQuantity(id, 1);
   }
 
   function decreaseProduct(id) {
     removeProduct(id);
+    updateProductQuantity(id, -1);
     toast.success('Removed product!!')
   }
   function deleteCart(id) {
@@ -188,6 +241,16 @@ export default function Cart() {
                               >
                                 +
                               </button>
+                              <button
+  onClick={() => {
+    const productId = '6636ba624d7c6cba2ca034d6'; // Aquí debes reemplazar 'ID_DEL_PRODUCTO' con el ID real del producto
+    const quantity = 150; // Puedes ajustar la cantidad según sea necesario
+    updateProductQuantityAndSave(productId, quantity);
+  }}
+  className="disabled block rounded bg-secondary px-5 py-3 text-md text-text transition hover:bg-purple-300 w-full"
+>
+  Update Product Quantity
+</button>
                             </div>
                           </div>
                         </li>

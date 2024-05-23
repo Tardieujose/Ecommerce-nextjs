@@ -17,6 +17,8 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
     slidesToScroll: 1
   };
 
+  let categories = [1, 2, 3, 4, 5, 6];
+
   return (
     <main
       className={`min-h-screen p-4 bg-background `}
@@ -35,11 +37,31 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
         </div>
         <div className="flex">
           <div className="flex-1">
-            <Collection product={collectionProduct1} />
+            <Collection product={categories[2]} />
           </div>
           <div className="flex-1">
-            <Collection product={collectionProduct1} />
+            <Collection product={categories[2]} />
           </div>
+          <div className="flex-1">
+            <Collection product={categories[2]} />
+          </div>
+          <div className="flex-1">
+            <Collection product={categories[2]} />
+          </div>
+        </div>
+        <div className="flex">
+          {/* <div className="flex-1">
+              <Collection product={collectionProduct1} />
+            </div>
+            <div className="flex-1">
+              <Collection product={collectionProduct1} />
+            </div>
+            <div className="flex-1">
+              <Collection product={collectionProduct1} />
+            </div> */}
+            <div className="flex-1">
+              {/* <Collection product={collectionProduct1} /> */}
+            </div>
         </div>
     </main>
   )
@@ -48,7 +70,7 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
 export async function getServerSideProps() {
   await mongooseConnect();
   const featuredId = '65e692df59a0b158b832561a';
-  const collectionId = '65e692df59a0b158b832561a';
+  const collectionId = '6636ba3f4d7c6cba2ca034d1';
 
   const featuredProduct = await Product.findById(featuredId);
   const collectionProduct1 = await Product.findById(collectionId);
