@@ -18,7 +18,7 @@ export default function Categories({ categoryProducts }) {
   const [brandFilter, setBrandFilter] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(categoryProducts);
 
-  const predefinedBrands = ["Jack", "Alchemist"]; // Predefined brands
+  const predefinedBrands = ["Jack", "Alchemist", "Madness"]; // Predefined brands
 
   useEffect(() => {
     setTimeout(() => {
@@ -136,7 +136,7 @@ export default function Categories({ categoryProducts }) {
 
 export async function getServerSideProps() {
   await mongooseConnect();
-  const category = '6657237c959519a5ab3c4046'; // Tu ID de categoría
+  const category = '65e901cde040af608769a5c2'; // Tu ID de categoría
 
   // Buscar productos por categoryId
   const categoryProducts = await Product.find({ category }).sort({ _id: 1 }).lean();

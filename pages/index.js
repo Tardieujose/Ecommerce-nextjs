@@ -1,4 +1,5 @@
 import { mongooseConnect } from "@/lib/mongoose";
+import { useContext, useEffect, useState } from "react";
 import Hero from "./components/Hero";
 import { Product } from "@/models/Product";
 import Products from "./components/Products";
@@ -23,7 +24,6 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
     <main
       className={`min-h-screen p-4 bg-background `}
     >
-
       <Hero product={featuredProduct} />
 
       <hr class="my-1 h-px border-0 bg-gray-300" />
@@ -32,21 +32,21 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
       <hr class="my-1 h-px border-0 bg-gray-300" />
         <div className="flex items-center justify-center">
           <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-            New Collection
+            CATEGORIAS
           </h2>
         </div>
         <div className="flex">
           <div className="flex-1">
-            <Collection product={categories[2]} />
+            <Collection product={categories[0]} />
+          </div>
+          <div className="flex-1">
+            <Collection product={categories[1]} />
           </div>
           <div className="flex-1">
             <Collection product={categories[2]} />
           </div>
           <div className="flex-1">
-            <Collection product={categories[2]} />
-          </div>
-          <div className="flex-1">
-            <Collection product={categories[2]} />
+            <Collection product={categories[3]} />
           </div>
         </div>
         <div className="flex">

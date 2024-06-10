@@ -7,7 +7,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState("");
-  const [dollarBluePrice, setDollarBluePrice] = useState(null);
   const { cartProducts } = useContext(CartContext)
   const router = useRouter();
   const { pathname } = router;
@@ -20,24 +19,6 @@ export default function Header() {
     // Update the currentPath state on client side
     setCurrentPath(window.location.pathname);
   }, []);
-
-  useEffect(() => {
-    const fetchDollarBluePrice = async () => {
-      try {
-        console.log("Fetching dollar blue price...");
-        const response = await fetch("https://dolarapi.com/v1/dolares/blue");
-        const data = await response.json();
-        console.log("Dollar blue price data:", data);
-        setDollarBluePrice(data.venta);
-        console.log("Dollar blue price set:", dollarBluePrice); // Agregar esta línea
-      } catch (error) {
-        console.error("Error fetching dollar blue price:", error);
-      }
-    };
-  
-    fetchDollarBluePrice();
-  }, []);
-  
   
   const toggleMobileNav = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
@@ -51,7 +32,7 @@ export default function Header() {
       <header className="bg-white sticky top-0 z-40 w-full px-2 md:px-4">
         <div className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 border-b border-bgWolf border-opacity-40">
           <Link className="flex gap-1 items-center text-text font-medium text-lg hover:text-bgWolf" href="/">
-            <img src="/BadWolf.png" alt="Descripción de la imagen" className="w-14 h-14" />
+            <img src="/BadWolf.png" alt="BadWolf" className="w-14 h-14" />
             <span>Bad Wolf</span>
           </Link>
 
@@ -68,31 +49,24 @@ export default function Header() {
                     All Products
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <select className={`text-accent transition hover:text-accent/75 ${pathname === '/categories' ? 'text-bgWolf' : ""}`} href="/categories">
                     <option value="0">Categories</option>
                     <option value="1">Shoes</option>
                   </select>
-                </li>
-                <li>
-                  {dollarBluePrice !== null ? (
-                    <span className="text-accent">Dollar Blue: ${dollarBluePrice}</span>
-                  ) : (
-                    <span className="text-accent">Loading...</span>
-                  )}
-                </li>
-              </ul>
+                </li> */}
+                </ul>
             </nav>
 
             <div className="flex items-center gap-2">
               {session ? (
-                <div className="sm:flex sm:gap-2 border-r border-bgWolf pr-4" onClick={handleLogout}>
+                <div className="sm:flex sm:gap-2 border-r border-bgWolf pr-4" onClick={handleLogout} style={{ cursor: 'pointer' }}>
                   <div className="h-9 w-9">
                     <img className="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} />
                   </div>
-                  <button className="inline-block px-5 py-3 text-sm font-medium text-text hover:bg-bgWolf rounded-md focus:outline-none focus:ring">
+                  {/* <button className="inline-block px-5 py-3 text-sm font-medium text-text hover:bg-bgWolf rounded-md focus:outline-none focus:ring">
                     Logout
-                  </button>
+                  </button> */}
                 </div>
               ) : (
                 <div className="sm:flex sm:gap-2 border-r pr-4">
@@ -148,18 +122,6 @@ export default function Header() {
                         <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/products' ? active : inActive}`} href="/products" onClick={toggleMobileNav}>
                           All Products
                         </Link>
-                      </li>
-                      <li>
-                        <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/categories' ? active : inActive}`} href="/categories" onClick={toggleMobileNav}>
-                          Categories
-                        </Link>
-                      </li>
-                      <li>
-                        {dollarBluePrice !== null ? (
-                          <span className="text-accent">Dollar Blue: ${dollarBluePrice}</span>
-                        ) : (
-                          <span className="text-accent">Loading...</span>
-                        )}
                       </li>
                       <li>
                         {session && (

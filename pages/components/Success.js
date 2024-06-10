@@ -1,6 +1,22 @@
 import Link from "next/link";
 
-export default function Success() {
+export default function Success({ cartProducts, products }) {
+  const formatPrice = (price) => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  let total = 0;
+  const cartProductsArray = Array.isArray(cartProducts) ? cartProducts : [cartProducts];
+    for (const productId of cartProductsArray) {
+      const price = products && products.find(p => p._id === productId)?.price || 0;
+    total += price;
+  }
+
+  if (!products || !products.length) {
+    return <div>No products found.</div>;
+  }
+
+
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md">
@@ -32,6 +48,35 @@ export default function Success() {
              >
               Continue Shopping
           </Link>
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold text-gray-800">Order Summary</h3>
+            {products.length > 0 && products.map(product => (
+              <div key={product._id} className="mt-4 flex items-center justify-between">
+                <img
+                  src={product.images[0]}
+                  alt=""
+                  className="h-16 w-16 rounded object-cover"
+                />
+                <div>
+                  <h3 className="text-md text-text">{product.title}</h3>
+                  <dl className="mt-0.5 space-y-px text-[10px] text-text">
+                    <p>ksh. {cartProducts.filter(id => id === product._id).length * product.price}</p>
+                  </dl>
+                </div>
+                <div className="text-right">
+                  <p className="text-md text-text">
+                    Quantity: {cartProducts.filter(id => id === product._id).length}
+                  </p>
+                </div>
+              </div>
+            ))}
+            <div className="mt-8 border-t pt-4">
+              <div className="flex justify-between !text-lg font-medium">
+                <dt>Total</dt>
+                <dd>Ksh. {formatPrice(total)}</dd>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

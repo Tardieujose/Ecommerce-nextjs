@@ -8,28 +8,52 @@ const formatPrice = (price) => {
 export default function Collection({ product }) {
   if (product) {
     let headerText;
+    let linkHref;
+    let imgSrc;
+    let imgAlt;
 
     switch (product) {
       case 1:
-        headerText = "es distinto";
+        headerText = "Resistencias y Algodones";
+        linkHref = "/categories/ResistenciasyAlgodones";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
+        imgAlt = "Category 1";
         break;
       case 2:
-        headerText = "es distinto b";
+        headerText = "Liquidos Nacionales";
+        linkHref = "/categories/Liquidosnacionales";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image2.jpg";
+        imgAlt = "Category 2";
         break;
       case 3:
-        headerText = "es distinto c";
+        headerText = "Sales Nacionales";
+        linkHref = "/categories/Salesnacionales";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image3.jpg";
+        imgAlt = "Category 3";
         break;
       case 4:
-        headerText = "es distinto d";
+        headerText = "Resistencias Comerciales";
+        linkHref = "/categories/Resistenciascomerciales";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image4.jpg";
+        imgAlt = "Category 4";
         break;
       case 5:
         headerText = "es distinto e";
+        linkHref = "/categories/Category5";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image5.jpg";
+        imgAlt = "Category 5";
         break;
       case 6:
         headerText = "es distinto f";
+        linkHref = "/categories/Category6";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image6.jpg";
+        imgAlt = "Category 6";
         break;
       default:
         headerText = "New Collection";
+        linkHref = "/categories/ResistenciasyAlgodones";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
+        imgAlt = "Resistencias y Algodones";
         break;
     }
 
@@ -54,11 +78,12 @@ export default function Collection({ product }) {
                     <ul className="grid grid-cols-1 gap-4">
                       <li>
                         <div className="block group">
-                          <Link href={'/categories/ResistenciasyAlgodones'}>
-                             <img src="https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg" 
-                                  alt="Resistencias y Algodones"
-                                  className="object-cover w-full rounded aspect-square"
-                                />
+                        <Link href={linkHref}>
+                          <img
+                            src={imgSrc}
+                            alt={imgAlt}
+                            className="object-cover w-full rounded aspect-square"
+                          />
                             {/* <img
                               src={product.images[0]}
                               alt=""
