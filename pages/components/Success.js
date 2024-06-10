@@ -121,7 +121,7 @@ for (const productId of cartProductsArray) {
             <div className="mt-8 border-t pt-4">
               <div className="flex justify-between !text-lg font-medium">
                 <dt>Total</dt>
-                <dd>ARS. {formatPrice(total)}</dd>
+                <dd>ARS ${formatPrice(total)}</dd>
               </div>
             </div>
           </div>
