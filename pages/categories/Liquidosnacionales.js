@@ -16,6 +16,7 @@ export default function Categories({ categoryProducts }) {
 
   const [loading, setLoading] = useState(true);
   const [brandFilter, setBrandFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(categoryProducts);
 
   const predefinedBrands = ["Jack", "Alchemist", "Madness"]; // Predefined brands
@@ -27,20 +28,32 @@ export default function Categories({ categoryProducts }) {
   }, []);
 
   const filterProducts = () => {
-    if (brandFilter === "") {
-      setFilteredProducts(categoryProducts);
-    } else {
+
+    let filtered = categoryProducts || [];
+
+      // Filtrar por propiedad "enabled"
+    filtered = filtered.filter((product) => product.enabled === true);
+
+    if (brandFilter !== "") {
       const lowerCaseBrandFilter = brandFilter.toLowerCase();
-      const filtered = categoryProducts.filter((product) =>
+      filtered = filtered.filter((product) =>
         product.brand?.toLowerCase().includes(lowerCaseBrandFilter)
       );
-      setFilteredProducts(filtered);
     }
+
+    if (searchQuery !== "") {
+      const lowerCaseQuery = searchQuery.toLowerCase();
+      filtered = filtered.filter((product) =>
+        product.title.toLowerCase().includes(lowerCaseQuery)
+      );
+    }
+
+    setFilteredProducts(filtered);
   };
 
   useEffect(() => {
     filterProducts();
-  }, [brandFilter]);
+  }, [searchQuery, brandFilter]);
 
   return (
     <div className="flex justify-center min-h-screen w-full">
@@ -49,15 +62,15 @@ export default function Categories({ categoryProducts }) {
           <Spinner />
         </div>
       ) : (
-        <div className="mt-14 md:mt-6 w-full px-4 md:p-0">
+        <div className="mt-14 md:mt-14 w-full px-4 md:p-0">
           <div className="mb-4 flex gap-4">
             {predefinedBrands.map((brand) => (
               <button
-                key={brand}
-                onClick={() => setBrandFilter(brand)}
-                className={`px-4 py-2 rounded-lg border ${
+              key={brand}
+              onClick={() => setBrandFilter(brand)}
+              className={`px-4 py-2 rounded-lg border ${
                   brandFilter === brand ? "bg-blue-500 text-white" : "bg-white text-blue-500 border-blue-500"
-                }`}
+                  }`}
               >
                 {brand}
               </button>
@@ -66,11 +79,18 @@ export default function Categories({ categoryProducts }) {
               onClick={() => setBrandFilter("")}
               className={`px-4 py-2 rounded-lg border ${
                 brandFilter === "" ? "bg-gray-500 text-white" : "bg-white text-gray-500 border-gray-500"
-              }`}
+                }`}
             >
               All Brands
             </button>
           </div>
+                <input
+                  type="text"
+                  placeholder="Search products"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="mb-4 px-4 py-2 rounded-lg border border-gray-300 w-full" // Increased the input size
+                />
 
           {filteredProducts.length === 0 ? (
             <p className="text-center text-gray-600">

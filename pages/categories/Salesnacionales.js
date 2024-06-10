@@ -28,7 +28,11 @@ export default function Products({ categoryProducts }) {
   }, []);
 
   const filterProducts = () => {
+    
     let filtered = categoryProducts || [];
+
+      // Filtrar por propiedad "enabled"
+    filtered = filtered.filter((product) => product.enabled === true);
 
     if (brandFilter !== "") {
       const lowerCaseBrandFilter = brandFilter.toLowerCase();
@@ -58,7 +62,7 @@ export default function Products({ categoryProducts }) {
           <Spinner />
         </div>
       ) : (
-        <div className="mt-14 md:mt-6 w-full px-4 md:p-0">
+        <div className="mt-14 md:mt-14 w-full px-4 md:p-0">
           <div className="mb-4 flex gap-4">
             {predefinedBrands.map((brand) => (
               <button

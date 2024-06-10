@@ -25,17 +25,23 @@ export default function Products({ allProducts }) {
   }, []);
 
   const filterProducts = () => {
+    // Filtrar por propiedad "enabled"
+    const filteredByEnabled = allProducts.filter((product) =>
+      product.enabled === true
+    );
+  
     if (searchQuery === "") {
-      setFilteredProducts(allProducts);
+      // Filtrar por búsqueda
+      setFilteredProducts(filteredByEnabled);
     } else {
       const lowerCaseQuery = searchQuery.toLowerCase();
-      const filtered = allProducts.filter((product) =>
+      const filteredBySearch = filteredByEnabled.filter((product) =>
         product.title.toLowerCase().includes(lowerCaseQuery)
       );
-      setFilteredProducts(filtered);
+      setFilteredProducts(filteredBySearch);
     }
   };
-
+  
   useEffect(() => {
     filterProducts();
   }, [searchQuery]);
@@ -47,7 +53,7 @@ export default function Products({ allProducts }) {
           <Spinner />
         </div>
       ) : (
-        <div className="mt-14 md:mt-6 w-full px-4 md:p-0">
+        <div className="mt-14 md:mt-14 w-full px-4 md:p-0">
           <input
             type="text"
             placeholder="Search products"
