@@ -75,7 +75,7 @@ for (const productId of cartProductsArray) {
         <div className="text-center mt-4">
           <h2 className="text-2xl font-semibold text-gray-800">Checkout Successful</h2>
           <p className="text-gray-600 mt-2 max-w-sm">
-            Your order has been received and is being processed. We&apos;ll send you an email with more details.
+            Your order has been received and is being processed. We&apos;ll send you an email with more  details.
           </p>
           <Link href="/products"
             onClick={() => {
