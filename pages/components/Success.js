@@ -1,16 +1,50 @@
 import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../lib/CartContext";
+import { useRouter } from "next/router";
 
 export default function Success({ cartProducts, products }) {
+  const { clearCart } = useContext(CartContext); // Obtén la función para limpiar
+  const router = useRouter();
+  const [dollarBluePrice, setDollarBluePrice] = useState(null);
+
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  useEffect(() => {
+    const fetchDollarBluePrice = async () => {
+       try {
+         const response = await fetch("https://dolarapi.com/v1/dolares/blue");
+         const data = await response.json();
+         setDollarBluePrice(data.venta);
+       } catch (error) {
+      }
+    };
+  
+    fetchDollarBluePrice();
+  }, []);
+  // Limpia el carrito cuando la página se descargue o se cierre
+  useEffect(() => {
+    const handleRouteChange = () => {
+      clearCart(); // Limpia el carrito al cambiar de ruta
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, []);
+
   let total = 0;
-  const cartProductsArray = Array.isArray(cartProducts) ? cartProducts : [cartProducts];
-    for (const productId of cartProductsArray) {
-      const price = products && products.find(p => p._id === productId)?.price || 0;
-    total += price;
+const cartProductsArray = Array.isArray(cartProducts) ? cartProducts : [cartProducts];
+for (const productId of cartProductsArray) {
+  const product = products && products.find(p => p._id === productId);
+  if (product) {
+    total += product.price * (product.coin === "USD" ? dollarBluePrice : 1);
   }
+}
 
   if (!products || !products.length) {
     return <div>No products found.</div>;
@@ -44,6 +78,9 @@ export default function Success({ cartProducts, products }) {
             Your order has been received and is being processed. We&apos;ll send you an email with more details.
           </p>
           <Link href="/products"
+            onClick={() => {
+              clearCart(); // Limpia el carrito al hacer clic en "Continue Shopping"
+            }}
              className="block mt-4 text-sm font-medium text-white bg-primary py-2 px-4 rounded-md hover:bg-primary-dark focus:outline-none focus:ring"
              >
               Continue Shopping
@@ -60,7 +97,18 @@ export default function Success({ cartProducts, products }) {
                 <div>
                   <h3 className="text-md text-text">{product.title}</h3>
                   <dl className="mt-0.5 space-y-px text-[10px] text-text">
-                    <p>ksh. {cartProducts.filter(id => id === product._id).length * product.price}</p>
+                  <p>
+                    {dollarBluePrice && product.coin === "USD" ? (
+                      <>
+                        <del className="mr-2">{product.coin} ${cartProducts.filter(id => id === product._id).length * product.price}</del>{" "}
+                        ARS ${cartProducts.filter(id => id === product._id).length * product.price * dollarBluePrice}
+                    </>
+                    ) : (
+                      <>
+                        {product.coin} ${cartProducts.filter(id => id === product._id).length * product.price}
+                      </>
+                    )}
+                  </p>
                   </dl>
                 </div>
                 <div className="text-right">
@@ -73,7 +121,7 @@ export default function Success({ cartProducts, products }) {
             <div className="mt-8 border-t pt-4">
               <div className="flex justify-between !text-lg font-medium">
                 <dt>Total</dt>
-                <dd>Ksh. {formatPrice(total)}</dd>
+                <dd>ARS. {formatPrice(total)}</dd>
               </div>
             </div>
           </div>

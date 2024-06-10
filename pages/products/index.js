@@ -12,7 +12,7 @@ const formatPrice = (price) => {
 };
 
 export default function Products({ allProducts }) {
-  const { addProduct } = useContext(CartContext);
+  const { addProduct, cartProducts } = useContext(CartContext);
 
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -40,6 +40,10 @@ export default function Products({ allProducts }) {
       );
       setFilteredProducts(filteredBySearch);
     }
+  };
+
+  const isProductInCart = (productId) => {
+    return cartProducts.includes(productId);
   };
   
   useEffect(() => {
@@ -98,13 +102,15 @@ export default function Products({ allProducts }) {
                           </p>
 
                           <div className="col-span-12 text-center w-full mt-3">
-                            <button
-                              onClick={() => {
-                                addProduct(product._id);
-                                toast.success("Item added to cart!");
-                              }}
-                              className="disabled block rounded bg-secondary px-5 py-3 text-md text-text w-full transition hover:bg-purple-300"
-                            >
+                          <button
+                          onClick={() => {
+                            addProduct(product._id);
+                            toast.success('Item added to cart!');
+                          }}
+                          type="button"
+                          disabled={isProductInCart(product._id)}
+                          className={`disabled block rounded bg-secondary px-5 py-3 text-md text-secondary-700 shadow-sm hover:bg-gray-100 ${isProductInCart(product._id) ? 'cursor-not-allowed opacity-50' : ''}`}
+                        >
                               Add to cart
                             </button>
                           </div>
