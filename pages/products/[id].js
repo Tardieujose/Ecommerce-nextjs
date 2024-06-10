@@ -45,36 +45,38 @@ export default function ProductPage({ product }) {
               <p className="mt-2 text-gray-700">{product.description}</p>
             </div>
 
-            <div className="mt-6">
-              <h2 className="text-xl font-semibold text-gray-900">Details</h2>
+            {/* <div className="mt-6">
+              <h2 className="text-xl font-semibold text-gray-900">TP</h2>
               <p className="mt-2 text-gray-700 list-disc list-inside">
-                {product?.details}
+                {product?.topprod}
               </p>
-            </div>
+            </div> */}
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
               <div>
-                <label className="text-text font-semibold">Brand</label>
+                <label className="text-text font-semibold">Marca</label>
                 <p className="mt-2 text-accent list-disc list-inside">
                   {product?.brand}
                 </p>
               </div>
 
               <div>
-                <label className="text-text font-semibold">Gender</label>
-                <p className="mt-2 text-accent list-disc list-inside">
-                  {product?.gender}
-                </p>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
-              <div>
-                <label className="text-text font-semibold">Sizes</label>
+                <label className="text-text font-semibold">ML/MG</label>
                 <p className="mt-2 text-accent list-disc list-inside">
                   {product?.sizes}
                 </p>
               </div>
 
+
+              {/* <div>
+                <label className="text-text font-semibold">Coin</label>
+                <p className="mt-2 text-accent list-disc list-inside">
+                  {product?.coin}
+                </p>
+              </div> */}
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 my-3">
+              
               <div>
                 <label className="text-text font-semibold">Cantidad</label>
                 <p className="mt-2 text-accent list-disc list-inside">
@@ -86,7 +88,7 @@ export default function ProductPage({ product }) {
             <div className="mt-4 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Price</h2>
               <p className="mt-2 text-primary font-semibold text-lg">
-                Ksh {formatPrice(product.price)}
+                Ars ${formatPrice(product.price)}
               </p>
             </div>
             <div className="w-full">
