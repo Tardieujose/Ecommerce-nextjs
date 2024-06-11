@@ -1,5 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { CartContext } from "../../lib/CartContext";
 import toast from "react-hot-toast";
 import Image from 'next/image';
@@ -9,7 +10,7 @@ const formatPrice = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-export default function Products({ products }) {
+export default function Products({ products = [] }) { // Default to an empty array
   const { addProduct, cartProducts } = useContext(CartContext);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 3;
@@ -48,12 +49,14 @@ export default function Products({ products }) {
                         src={product.images[0]}
                         alt=""
                         width={300}
+                        height={300}
                         className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0 rounded-3xl"
                       />
                       <Image
                         src={product.images[1]}
                         alt=""
                         width={300}
+                        height={300}
                         className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
                       />
                     </Link>
@@ -110,3 +113,4 @@ export default function Products({ products }) {
     </div>
   );
 }
+

@@ -94,6 +94,7 @@ for (const productId of cartProductsArray) {
                   src={product.images[0]}
                   alt=""
                   width={300}
+                  height={300}
                   className="h-16 w-16 rounded object-cover"
                 />
                 <div>

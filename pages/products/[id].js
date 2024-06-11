@@ -21,6 +21,7 @@ export default function ProductPage({ product }) {
               src={product.images[0]}
               alt={product.images[0]}
               width={300}
+              height={300}
               className="w-full h-full md:h-[90vh] object-cover object-center border border-primary rounded-lg"
             />
           </div>
@@ -34,6 +35,7 @@ export default function ProductPage({ product }) {
                   src={image}
                   alt={image}
                   width={300}
+                  height={300}
                   className="w-full h-full md:h-[44vh] object-cover object-center border rounded-lg border-secondary p-4"
                 />
               </div>
