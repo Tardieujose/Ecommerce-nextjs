@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from 'next/image';
 
 // Utility function to format price with a comma for thousands
 const formatPrice = (price) => {
@@ -14,7 +15,7 @@ export default function Collection({ product }) {
 
     switch (product) {
       case 1:
-        headerText = "Resistencias y Algodones";
+        headerText = "Resistencias Algodones";
         linkHref = "/categories/ResistenciasyAlgodones";
         imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
         imgAlt = "Category 1";
@@ -22,19 +23,19 @@ export default function Collection({ product }) {
       case 2:
         headerText = "Liquidos Nacionales";
         linkHref = "/categories/Liquidosnacionales";
-        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image2.jpg";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
         imgAlt = "Category 2";
         break;
       case 3:
         headerText = "Sales Nacionales";
         linkHref = "/categories/Salesnacionales";
-        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image3.jpg";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
         imgAlt = "Category 3";
         break;
       case 4:
         headerText = "Resistencias Comerciales";
         linkHref = "/categories/Resistenciascomerciales";
-        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/Image4.jpg";
+        imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
         imgAlt = "Category 4";
         break;
       case 5:
@@ -79,9 +80,11 @@ export default function Collection({ product }) {
                       <li>
                         <div className="block group">
                         <Link href={linkHref}>
-                          <img
+                          <Image
                             src={imgSrc}
                             alt={imgAlt}
+                            width={500}
+                            height={500}
                             className="object-cover w-full rounded aspect-square"
                           />
                             {/* <img

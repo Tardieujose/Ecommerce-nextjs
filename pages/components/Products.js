@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import { CartContext } from "../../lib/CartContext";
 import toast from "react-hot-toast";
+import Image from 'next/image';
 
 // Utility function to format price with a comma for thousands
 const formatPrice = (price) => {
@@ -47,13 +48,15 @@ export default function Products({ products = [] }) { // Default to an empty arr
                       <Image
                         src={product.images[0]}
                         alt=""
-                        layout="fill"
+                        width={300}
+                        height={300}
                         className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0 rounded-3xl"
                       />
                       <Image
                         src={product.images[1]}
                         alt=""
-                        layout="fill"
+                        width={300}
+                        height={300}
                         className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
                       />
                     </Link>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import toast from "react-hot-toast";
+import Image from 'next/image';
 
 // Utility function to format price with a comma for thousands
 const formatPrice = (price) => {
@@ -77,14 +78,16 @@ export default function Products({ allProducts }) {
                   <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
                     <div className="">
                       <div className="relative md:h-[300px] h-[200px]">
-                        <img
+                        <Image
                           src={product.images[0]}
                           alt=""
                           className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
                         />
-                        <img
+                        <Image
                           src={product.images[1]}
                           alt=""
+                          width={300}
+                          height={300}
                           className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
                         />
                       </div>

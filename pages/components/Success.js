@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../lib/CartContext";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 
 export default function Success({ cartProducts, products }) {
   const { clearCart } = useContext(CartContext); // Obtén la función para limpiar
@@ -75,7 +76,7 @@ for (const productId of cartProductsArray) {
         <div className="text-center mt-4">
           <h2 className="text-2xl font-semibold text-gray-800">Checkout Successful</h2>
           <p className="text-gray-600 mt-2 max-w-sm">
-            Your order has been received and is being processed. We&apos;ll send you an email with more details.
+            Your order has been received and is being processed. We&apos;ll send you an email with more  details.
           </p>
           <Link href="/products"
             onClick={() => {
@@ -89,9 +90,11 @@ for (const productId of cartProductsArray) {
             <h3 className="text-xl font-semibold text-gray-800">Order Summary</h3>
             {products.length > 0 && products.map(product => (
               <div key={product._id} className="mt-4 flex items-center justify-between">
-                <img
+                <Image
                   src={product.images[0]}
                   alt=""
+                  width={300}
+                  height={300}
                   className="h-16 w-16 rounded object-cover"
                 />
                 <div>
