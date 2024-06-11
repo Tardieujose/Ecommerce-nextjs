@@ -7,6 +7,7 @@
   import Success from "../components/Success";
   import toast from "react-hot-toast";
   import { useRouter } from 'next/router';
+  import Image from 'next/image';
 
   export default function Cart() {
     const { cartProducts, removeProduct, addProduct, clearCart } = useContext(CartContext);
@@ -144,9 +145,11 @@
                     <div key={product._id} className="mt-8">
                       <ul className="space-y-4">
                         <li className="flex items-center gap-4 justify-between">
-                          <img
+                          <Image
                             src={product.images[0]}
                             alt=""
+                            width={300}
+                            height={300}
                             className="h-16 w-16 rounded object-cover"
                           />
                           <div>
