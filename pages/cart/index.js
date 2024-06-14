@@ -48,7 +48,7 @@
       }
       if (window?.location.href.includes('success')) {
         setIsSuccess(true);
-        clearCart();
+        setProducts([]);
       }
     }, []);
     

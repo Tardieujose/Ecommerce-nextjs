@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../lib/CartContext";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from 'next/image';
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function Header() {
       <header className="bg-white sticky top-0 z-40 w-full px-2 md:px-4">
         <div className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 border-b border-bgWolf border-opacity-40">
           <Link className="flex gap-1 items-center text-text font-medium text-lg hover:text-bgWolf" href="/">
-            <img src="/BadWolf.png" alt="BadWolf" className="w-14 h-14" />
+            <Image src="/BadWolf.png" alt="BadWolf" width={300} height={300} className="w-14 h-14" />
             <span>Bad Wolf</span>
           </Link>
 
@@ -62,7 +63,7 @@ export default function Header() {
               {session ? (
                 <div className="sm:flex sm:gap-2 border-r border-bgWolf pr-4" onClick={handleLogout} style={{ cursor: 'pointer' }}>
                   <div className="h-9 w-9">
-                    <img className="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} />
+                    <Image width={300} height={300} className="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} />
                   </div>
                   {/* <button className="inline-block px-5 py-3 text-sm font-medium text-text hover:bg-bgWolf rounded-md focus:outline-none focus:ring">
                     Logout
