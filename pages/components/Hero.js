@@ -33,6 +33,7 @@ export default function Hero({ product }) {
                         src={product.images[0]} 
                         alt="" 
                         width={300}
+                        height={300}
                         className="h-full w-full object-cover object-center" />
                     </div>
                     <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform -rotate-2 translate-x-2 hover:rotate-4 hover:translate-x-4 transition-transform duration-300 ease-in-out">
@@ -40,6 +41,7 @@ export default function Hero({ product }) {
                        src={product.images[1]}
                        alt=""
                        width={300}
+                       height={300}
                        className="h-full w-full object-cover object-center" />
                     </div>
                   </div>
@@ -61,6 +63,7 @@ export default function Hero({ product }) {
                        src={product.images[0]}
                        alt="" 
                        width={300}
+                       height={300}
                        className="h-full w-full object-cover object-center" />
                     </div>
                     <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform -rotate-2 translate-x-2 hover:rotate-4 hover:translate-x-4 transition-transform duration-300 ease-in-out">

@@ -66,27 +66,27 @@ export default function Collection({ product }) {
               <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
                 {headerText}
               </h2>
-
+    
               <p className="max-w-lg mx-auto mt-4 text-gray-500">
                 Explore our latest arrivals and elevate your style with our exclusive new collection.
               </p>
             </header>
-
+    
             <div>
               <div className="max-w-screen-2xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-                  <div className="lg:col-span-3 lg:py-8">
-                    <ul className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                  <div className="col-span-1">
+                    <ul className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                       <li>
                         <div className="block group">
-                        <Link href={linkHref}>
-                          <Image
-                            src={imgSrc}
-                            alt={imgAlt}
-                            width={500}
-                            height={500}
-                            className="object-cover w-full rounded aspect-square"
-                          />
+                          <Link href={linkHref}>
+                            <Image
+                              src={imgSrc}
+                              alt={imgAlt}
+                              width={300}
+                              height={300}
+                              className="object-cover w-full rounded aspect-square"
+                            />
                             {/* <img
                               src={product.images[0]}
                               alt=""
@@ -95,7 +95,7 @@ export default function Collection({ product }) {
                           </Link>
                         </div>
                       </li>
-                      {/* Other product images can be added similarly if needed */}
+                      {/* Otros elementos de producto pueden ser añadidos de forma similar */}
                     </ul>
                   </div>
                 </div>
