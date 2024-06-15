@@ -31,37 +31,26 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
       <Products products={newProducts} />
       <hr class="my-1 h-px border-0 bg-gray-300" />
         <div className="flex items-center justify-center">
-          <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+          <h2 className="text-xl mt-10 font-bold text-gray-900 sm:text-3x1">
             CATEGORIAS
           </h2>
         </div>
         <div className="flex">
-          <div className="flex-1">
+          <div className="flex-1 px-2">
             <Collection product={categories[0]} />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 px-2 ">
             <Collection product={categories[1]} />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 px-1">
             <Collection product={categories[2]} />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 px-1">
             <Collection product={categories[3]} />
           </div>
         </div>
         <div className="flex">
-          {/* <div className="flex-1">
-              <Collection product={collectionProduct1} />
-            </div>
-            <div className="flex-1">
-              <Collection product={collectionProduct1} />
-            </div>
-            <div className="flex-1">
-              <Collection product={collectionProduct1} />
-            </div> */}
-            <div className="flex-1">
-              {/* <Collection product={collectionProduct1} /> */}
-            </div>
+          
         </div>
     </main>
   )
