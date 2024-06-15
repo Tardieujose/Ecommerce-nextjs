@@ -60,9 +60,10 @@ export default function Collection({ product }) {
 
     return (
       <>
-        <section className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
-          <div className="max-w-screen-2xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-12 group block overflow-hidden border border-accent rounded-xl border-opacity-100">
-            <header className="text-center ">
+        <section>
+          <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4 xl:gap-y-8">
+          <div className="mx-auto sm:px-1 sm:my-auto lg:px-2 group block overflow-hidden border border-accent rounded-xl border-opacity-0">
+            <header className="text-center">
               <h2 className="text-sm font-bold text-gray-900 sm:text-lg border-b p-3">
                 {headerText}
               </h2>
@@ -72,10 +73,10 @@ export default function Collection({ product }) {
               </p> */}
             </header>
     
-            <div className="group relative">
+            <div className="group">
               <div className="group block overflow-hidden">
-                <div className="p-1">
-                  <div className="relative h-[110px] sm:h-[110px]">
+                <div className="p-4">
+                  <div className="relative h-[90px] sm:h-[110px]">
                     <ul className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                       <li>
                         <div className="group relative">
@@ -83,9 +84,9 @@ export default function Collection({ product }) {
                             <Image
                               src={imgSrc}
                               alt={imgAlt}
-                              width={500}
-                              height={500}
-                              className="absolute inset-0 object-cover w-full aspect-square rounded-3xl"
+                              width={300}
+                              height={300}
+                              className="absolute w-full aspect-square rounded-2xl"
                             />
                             {/* <img
                               src={product.images[0]}
@@ -101,6 +102,7 @@ export default function Collection({ product }) {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </section>
       </>
