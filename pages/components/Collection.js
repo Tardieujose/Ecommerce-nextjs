@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from 'next/image';
 
-export default function Collection({ product, onlyHeaderText = false }) {
+export default function Collection({ product }) {
   let headerText;
   let linkHref;
   let imgSrc;
@@ -32,18 +32,6 @@ export default function Collection({ product, onlyHeaderText = false }) {
       imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
       imgAlt = "Category 4";
       break;
-  }
-
-  if (onlyHeaderText) {
-    return (
-      <header className="text-center">
-        <h2 className="text-sm font-bold text-gray-900 sm:text-lg p-3">
-        
-          {headerText}
-        
-        </h2>
-      </header>
-    );
   }
 
   return (
