@@ -5,23 +5,26 @@ import { CartContextProvider } from '../lib/CartContext';
 import { SessionProvider } from "next-auth/react"
 import { Toaster } from 'react-hot-toast';
 import FloatingDollarPrice from './components/Floatingdolar';
+import MobileMenu from './components/MobileMenu';
 
 const inter = Poppins({
   subsets: ['latin'],
   weight: '500'
 });
 
+const categories = [1, 2, 3, 4, 5, 6];
+
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
-  return <>
-  <SessionProvider session={session}>
-    <CartContextProvider>
-      <main className={`${inter.className} min-h-screen max-w-screen-2xl mx-auto bg-background sm:px-6`}>
-        <Header />
-        <Toaster position='top-center' />
-        <Component {...pageProps} className="sm:mt-36" />
-        <FloatingDollarPrice />
-      </main>
-    </CartContextProvider>
+  return (
+    <SessionProvider session={session}>
+      <CartContextProvider>
+        <main className={`${inter.className} min-h-screen max-w-screen-2xl mx-auto bg-background sm:px-6`}>
+          <Header />
+          <Toaster position='top-center' />
+          <Component {...pageProps} className="sm:mt-36" />
+          <FloatingDollarPrice />
+        </main>
+      </CartContextProvider>
     </SessionProvider>
-  </>
+  );
 }
