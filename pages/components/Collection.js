@@ -26,12 +26,11 @@ export default function Collection({ product }) {
       imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
       imgAlt = "Category 3";
       break;
-    case 4:
+    default:
       headerText = "Resistencias Comerciales";
       linkHref = "/categories/Resistenciascomerciales";
       imgSrc = "https://res.cloudinary.com/drvrc6y7b/image/upload/v1716497625/Bad-Wolf-Tienda/CoilandCotton_inl9zc.jpg";
       imgAlt = "Category 4";
-      break;
   }
 
   return (
