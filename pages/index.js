@@ -18,7 +18,7 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
     slidesToScroll: 1
   };
 
-  let categories = [1, 2, 3, 4, 5, 6];
+  let categories = [1, 2, 3, 4];
 
   return (
     <main
