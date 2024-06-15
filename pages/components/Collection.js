@@ -60,32 +60,32 @@ export default function Collection({ product }) {
 
     return (
       <>
-        <section>
-          <div className="max-w-screen-2xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
-            <header className="text-center">
-              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+        <section className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
+          <div className="max-w-screen-2xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-12 group block overflow-hidden border border-accent rounded-xl border-opacity-100">
+            <header className="text-center ">
+              <h2 className="text-sm font-bold text-gray-900 sm:text-lg border-b p-3">
                 {headerText}
               </h2>
     
-              <p className="max-w-lg mx-auto mt-4 text-gray-500">
+              {/* <p className="max-w-lg text-xs mx-auto mt-4 text-gray-500">
                 Explore our latest arrivals and elevate your style with our exclusive new collection.
-              </p>
+              </p> */}
             </header>
     
-            <div>
-              <div className="max-w-screen-2xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                  <div className="col-span-1">
+            <div className="group relative">
+              <div className="group block overflow-hidden">
+                <div className="p-1">
+                  <div className="relative h-[110px] sm:h-[110px]">
                     <ul className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                       <li>
-                        <div className="block group">
+                        <div className="group relative">
                           <Link href={linkHref}>
                             <Image
                               src={imgSrc}
                               alt={imgAlt}
-                              width={300}
-                              height={300}
-                              className="object-cover w-full rounded aspect-square"
+                              width={500}
+                              height={500}
+                              className="absolute inset-0 object-cover w-full aspect-square rounded-3xl"
                             />
                             {/* <img
                               src={product.images[0]}

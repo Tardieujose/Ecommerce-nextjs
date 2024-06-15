@@ -40,7 +40,7 @@ export default function Products({ products = [] }) { // Default to an empty arr
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-8">
           {filteredProducts.length > 0 && getCurrentPageProducts().map((product) => (
             <div key={product._id} className="group relative">
-              <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
+              <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-100">
                 <div className="p-1">
                   <div className="relative h-[300px] sm:h-[300px]">
                     <Link href={'/products/' + product._id}>
@@ -52,7 +52,7 @@ export default function Products({ products = [] }) { // Default to an empty arr
                         className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0 rounded-3xl"
                       />
                       <Image
-                        src={product.images[1]}
+                        src={product.images[0]}
                         alt=""
                         width={300}
                         height={300}
