@@ -64,7 +64,7 @@ export default function Collection({ product }) {
                           </Link>
                         </div>
                       </li>
-                      {/* Otros elementos de producto pueden ser añadidos de forma similar */}
+                      
                     </ul>
                   </div>
                 </div>
