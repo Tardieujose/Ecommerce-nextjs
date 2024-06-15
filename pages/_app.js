@@ -5,7 +5,6 @@ import { CartContextProvider } from '../lib/CartContext';
 import { SessionProvider } from "next-auth/react"
 import { Toaster } from 'react-hot-toast';
 import FloatingDollarPrice from './components/Floatingdolar';
-import MobileMenu from './components/MobileMenu';
 
 const inter = Poppins({
   subsets: ['latin'],

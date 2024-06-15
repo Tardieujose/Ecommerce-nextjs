@@ -12,7 +12,7 @@ const formatPrice = (price) => {
 export default function Products({ products = [] }) { // Default to an empty array
   const { addProduct, cartProducts } = useContext(CartContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 3;
+  const productsPerPage = 10;
 
   // Filtrar los productos que tienen topprod en true
   const filteredProducts = products.filter(product => product.topprod);
