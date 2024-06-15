@@ -25,7 +25,7 @@ export default function Header() {
     setIsMobileNavOpen(!isMobileNavOpen);
   };
 
-  const active = 'p-2 text-primary bg-secondary rounded-lg';
+  const active = 'p-2 text-bgWolf bg-colWolf rounded-lg';
   const inActive = 'p-2';
 
   return (
@@ -37,11 +37,11 @@ export default function Header() {
             <span>Bad Wolf</span>
           </Link>
 
-          <div className="flex flex-1 items-center justify-end md:justify-between">
+          <div className="flex flex-1 items-center justify-end md:justify-between p-10 font-semibold">
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-6 text-md">
                 <li>
-                  <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? 'text-bgWolf' : ""}`} href="/">
+                  <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? active : inActive}`} href="/">
                     Home
                   </Link>
                 </li>
@@ -50,13 +50,7 @@ export default function Header() {
                     All Products
                   </Link>
                 </li>
-                {/* <li>
-                  <select className={`text-accent transition hover:text-accent/75 ${pathname === '/categories' ? 'text-bgWolf' : ""}`} href="/categories">
-                    <option value="0">Categories</option>
-                    <option value="1">Shoes</option>
-                  </select>
-                </li> */}
-                </ul>
+              </ul>
             </nav>
 
             <div className="flex items-center gap-2">
@@ -111,11 +105,11 @@ export default function Header() {
               </div>
 
               {isMobileNavOpen && (
-                <div className="md:hidden absolute top-24 right-0 bg-white border border-zinc-200 rounded shadow-lg p-6 text-lg ">
+                <div className="sm:hidden absolute top-24 right-0 bg-white border border-zinc-200 rounded shadow-lg p-6 text-lg ">
                   <nav aria-label="Global">
                     <ul className="flex flex-col items-start gap-6 text-md">
                       <li>
-                        <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? active : inActive}`} href="/" onClick={toggleMobileNav}>
+                      <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? active : inActive}`} href="/" onClick={toggleMobileNav}>
                           Home
                         </Link>
                       </li>
@@ -138,7 +132,7 @@ export default function Header() {
         </div>
       </header>
 
-      <header className="md:hidden w-full flex justify-around items-center my-3 border-b fixed top-12 bg-gray-200 z-50">
+      {/* <header className="sm:hidden w-full flex justify-around items-center my-3 border-b fixed top-12 bg-gray-200 z-50">
         <div className="inline-flex gap-8 p-1">
           <Link href={'/'} className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-md text-accent hover:text-gray-700 focus:relative ${pathname === ('/') ? 'text-bgWolf' : ""}`}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-4 h-4">
@@ -159,7 +153,7 @@ export default function Header() {
             Cart
           </Link>
         </div>
-      </header>
+      </header> */}
     </>
   );
 }
