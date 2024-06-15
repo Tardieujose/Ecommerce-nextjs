@@ -17,7 +17,7 @@ const FloatingDollarPrice = () => {
   }, []);
 
   return (
-<div className="fixed top-16 left-1 w-28 bg-bgWolf bg-opacity-90 font-medium text-black p-0 rounded z-50 flex items-center justify-center text-center">
+<div className="fixed top-16 left-1 w-30 bg-bgWolf bg-opacity-90 font-medium text-black p-0 rounded z-50 flex items-center justify-center text-center">
         {dollarBluePrice !== null ? (
         <span>Dólar Blue: ${dollarBluePrice}</span>
       ) : (
