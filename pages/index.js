@@ -60,8 +60,8 @@ export default function Home({ featuredProduct, newProducts, collectionProduct1,
 
 export async function getServerSideProps() {
   await mongooseConnect();
-  const featuredId = '65e692df59a0b158b832561a';
-  const collectionId = '6636ba3f4d7c6cba2ca034d1';
+  const featuredId = '6671f3a409fdecf2b5d7bf8c';
+  const collectionId = '6671f3a409fdecf2b5d7bf8c';
 
   const featuredProduct = await Product.findById(featuredId);
   const collectionProduct1 = await Product.findById(collectionId);

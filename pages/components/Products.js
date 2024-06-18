@@ -70,7 +70,7 @@ export default function Products({ products = [] }) { // Default to an empty arr
 
                     <div className="mt-1.5 space-x-3 flex items-center justify-between text-text">
                       <p className="tracking-wide text-colWolf">
-                        {product.brand.toLowerCase() === "liquidos" ? "USD" : "ARS"}$ {formatPrice(product.price)}
+                        {product.coin === "USD" ? "USD" : "ARS"}$ {formatPrice(product.price)}
                       </p>
 
                       <button
