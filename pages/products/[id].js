@@ -92,8 +92,8 @@ export default function ProductPage({ product }) {
 
             <div className="mt-4 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Price</h2>
-              <p className="mt-2 text-primary font-semibold text-lg">
-                Ars ${formatPrice(product.price)}
+              <p className="mt-2 text-bgWolf font-semibold text-lg">
+              {product.coin === "USD" ? "USD" : "ARS"}$ {formatPrice(product.price)}
               </p>
             </div>
             <div className="w-full">
