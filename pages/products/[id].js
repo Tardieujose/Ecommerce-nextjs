@@ -10,7 +10,12 @@ const formatPrice = (price) => {
 };
 
 export default function ProductPage({ product }) {
-  const { addProduct } = useContext(CartContext)
+  const { addProduct, cartProducts } = useContext(CartContext)
+
+  const isProductInCart = (productId) => {
+    return cartProducts.includes(productId);
+  };
+
   if (product) {
     return (
       <section className="mt-20 md:mt-6 ">
@@ -45,8 +50,8 @@ export default function ProductPage({ product }) {
           {/* Product info */}
           <div className="p-4 lg:p-8 border">
             <h1 className="text-3xl font-semibold text-gray-900">{product.title}</h1>
-            <div className="mt-6">
-              <h2 className="text-xl font-semibold text-gray-900">Description</h2>
+            <div className="mt-8">
+              <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
               <p className="mt-2 text-gray-700">{product.description}</p>
             </div>
 
@@ -56,7 +61,7 @@ export default function ProductPage({ product }) {
                 {product?.topprod}
               </p>
             </div> */}
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 my-3">
+            <div class="grid grid-cols-1 mt-8 gap-4 sm:grid-cols-2 my-3">
               <div>
                 <label className="text-text font-semibold">Marca</label>
                 <p className="mt-2 text-accent list-disc list-inside">
@@ -80,7 +85,7 @@ export default function ProductPage({ product }) {
               </div> */}
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 my-3">
+            {/* <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 my-3">
               
               <div>
                 <label className="text-text font-semibold">Cantidad</label>
@@ -88,20 +93,24 @@ export default function ProductPage({ product }) {
                   {product?.cantidad}
                 </p>
               </div>
-            </div>
+            </div> */}
 
-            <div className="mt-4 flex justify-between items-center">
+            <div className="mt-8 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Price</h2>
               <p className="mt-2 text-bgWolf font-semibold text-lg">
               {product.coin === "USD" ? "USD" : "ARS"}$ {formatPrice(product.price)}
               </p>
             </div>
             <div className="w-full">
-              <button
-                className="bg-primary text-white py-2 px-4 mt-4 rounded-md hover:bg-primary-dark w-full"
-                onClick={() => {addProduct(product._id);
-                  toast.success('Item added to cart!!')}}
-              >
+            <button
+              onClick={() => {
+                addProduct(product._id);
+                toast.success('Item added to cart!');
+              }}
+              type="button"
+              disabled={isProductInCart(product._id)}
+              className={`disabled block rounded bg-secondary px-3 py-3 w-full text-lg text-secondary-700 shadow-sm hover:bg-gray-100 ${isProductInCart(product._id) ? 'cursor-not-allowed opacity-50' : ''}`}
+            >
                 Add to Cart
               </button>
             </div>
