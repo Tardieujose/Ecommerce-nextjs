@@ -100,8 +100,8 @@ export default function Products({ allProducts }) {
                         </Link>
 
                         <div className="mt-1.5 flex flex-col items-center justify-between text-text">
-                          <p className="tracking-wide text-primary text-sm md:text-md">
-                            Ars$ {formatPrice(product.price)}
+                          <p className="tracking-wide text-colWolf text-sm md:text-md">
+                          {product.coin === "USD" ? "USD" : "ARS"}$ {formatPrice(product.price)}
                           </p>
 
                           <div className="col-span-12 text-center w-full mt-3">
