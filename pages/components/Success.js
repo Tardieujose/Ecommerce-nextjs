@@ -74,20 +74,23 @@ for (const productId of cartProductsArray) {
           </div>
         </div>
         <div className="text-center mt-4">
-          <h2 className="text-2xl font-semibold text-gray-800">Checkout Successful</h2>
+          <h2 className="text-2xl font-semibold text-colWolf">Compra Realizada</h2>
           <p className="text-gray-600 mt-2 max-w-sm">
-            Your order has been received and is being processed. We&apos;ll send you an email with more  details.
+            Su orden ha sido recivida y esta siendo procesada para su retiro o envio.
+          </p>
+          <p className="text-gray-600 mt-2 max-w-sm">
+          Ante cualquier incoveniente, por favor sacar captura del pedido y comunicarse con nostros.
           </p>
           <Link href="/products"
             onClick={() => {
               clearCart(); // Limpia el carrito al hacer clic en "Continue Shopping"
             }}
-             className="block mt-4 text-sm font-medium text-white bg-primary py-2 px-4 rounded-md hover:bg-primary-dark focus:outline-none focus:ring"
+             className="block mt-4 text-sm font-medium text-white bg-bgWolf py-2 px-4 rounded-md hover:bg-primary-dark focus:outline-none focus:ring"
              >
-              Continue Shopping
+              Continuar comprando
           </Link>
           <div className="mt-8">
-            <h3 className="text-xl font-semibold text-gray-800">Order Summary</h3>
+            <h3 className="text-xl font-semibold text-colWolf">Resumen del Pedido</h3>
             {products.length > 0 && products.map(product => (
               <div key={product._id} className="mt-4 flex items-center justify-between">
                 <Image

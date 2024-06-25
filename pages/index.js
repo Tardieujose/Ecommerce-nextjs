@@ -4,19 +4,8 @@ import Hero from "./components/Hero";
 import { Product } from "@/models/Product";
 import Products from "./components/Products";
 import Collection from "./components/Collection";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 export default function Home({ featuredProduct, newProducts, collectionProduct1, allProducts }) {
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
 
   let categories = [1, 2, 3, 4];
 
@@ -65,7 +54,7 @@ export async function getServerSideProps() {
 
   const featuredProduct = await Product.findById(featuredId);
   const collectionProduct1 = await Product.findById(collectionId);
-  const newProducts = await Product.find({}, null, {sort: {'_id': 1}, limit: 5})
+  const newProducts = await Product.find({}, null, {sort: {'_id': 1}}) //, limit: 10
   const allProducts = await Product.find({}, null, {sort: {'_id': 1}})
 
   return {
