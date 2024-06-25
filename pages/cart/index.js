@@ -158,16 +158,15 @@
                             <p>
                               {dollarBluePrice && product.coin === "USD" ? (
                                 <>
-                                  <del className="mr-2">{product.coin} ${cartProducts.filter(id => id === product._id).length * product.price}</del>{" "}
-                                  ARS ${cartProducts.filter(id => id === product._id).length * product.price * dollarBluePrice}
-                              </>
+                                  <del className="mr-2"><span className="text-green-500">USD</span> ${cartProducts.filter(id => id === product._id).length * product.price}</del>{" "}
+                                  <span className="text-blue-500">ARS </span>${cartProducts.filter(id => id === product._id).length * product.price * dollarBluePrice}
+                                </>
                               ) : (
                                 <>
-                                  {product.coin} ${cartProducts.filter(id => id === product._id).length * product.price}
+                                  <span className="text-blue-500">{product.coin}</span> ${cartProducts.filter(id => id === product._id).length * product.price}
                                 </>
                               )}
                             </p>
-
                             </dl>
                           </div>
                           <div>

@@ -4,6 +4,7 @@ const ProductSchema = new Schema({
   title: {type:String, required:true},
   description: {type:String, required:true},
   price: {type:Number, required: true},
+  reprice: {type:Number, required: true},
   coin: {type:String, required: true},
   topprod: { type:Boolean, default: false},
   brand: {type:String},
