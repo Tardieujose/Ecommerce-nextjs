@@ -73,7 +73,7 @@ export default function Header() {
                 <div className="sm:flex sm:gap-2 border-r pr-4">
                   <button
                     onClick={() => signIn('google')}
-                    className="inline-block px-5 py-3 text-lg font-medium text-bgWolf hover:bg-bgWolf hover:text-white rounded-md focus:outline-none focus:ring"
+                    className="inline-block px-5 py-3 text-md font-medium text-bgWolf hover:bg-bgWolf hover:text-white rounded-md focus:outline-none focus:ring"
                   >
                     Inicio / Registro
                   </button>

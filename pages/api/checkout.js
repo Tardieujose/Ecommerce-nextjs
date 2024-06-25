@@ -1,6 +1,7 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
+import axios from "axios";
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -28,22 +29,34 @@ export default async function handler(req, res) {
         productId: productInfo._id,
         quantity,
         name: productInfo.title,
+        coin: productInfo.coin,
+        reprice: productInfo.reprice,
         price: productInfo.price,
         total: quantity * productInfo.price
       });
     }
   }
 
-  const orderDoc = await Order.create({
-    line_items,
-    email,
-    name,
-    address,
-    city,
-    country,
-    zip,
-    paid: false
-  });
+  try {
+    // Obtén el valor del dólar
+    const response = await axios.get('https://dolarapi.com/v1/dolares/blue');
+    const dollarBluePrice = response.data.venta;
 
-  res.json({ success: true });
+    // Crea el documento de la orden con el valor del dólar
+    const orderDoc = await Order.create({
+      line_items,
+      email,
+      name,
+      address,
+      city,
+      country,
+      zip,
+      paid: false,
+      dollarBluePrice, // Guarda el valor del dólar
+    });
+
+    res.json({ success: true, order: orderDoc });
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Failed to create order' });
+  }
 }
