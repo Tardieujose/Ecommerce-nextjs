@@ -131,14 +131,14 @@
           <div className="md:w-2/3 px-4">
             <div className="mt-16 md:mt-6">
               <header className="text-center flex justify-between w-full">
-                <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">Your Cart</h1>
+                <h1 className="text-xl font-bold text-gray-900 sm:text-3xl"></h1>
               </header>
               {loading ? (
                 <div className="flex justify-center items-center h-screen">
                   <Spinner />
                 </div>
               ) : !products.length ? (
-                <p className="my-6 text-center">Your cart is empty</p>
+                <p className="my-10 text-xl text-colWolf text-center">Tu carrito esta vacio</p>
               ) : (
                 <>
                   {products.length > 0 && products.map(product => (
@@ -184,7 +184,7 @@
                                 type="number"
                                 id="Quantity"
                                 value={cartProducts.filter(id => id === product._id).length}
-                                className="h-10 w-16 rounded border border-secondary text-primary font-bold text-center [-moz-appearance:_textfield] sm:text-md [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+                                className="h-10 w-16 rounded border border-secondary text-bgWolf font-bold text-center [-moz-appearance:_textfield] sm:text-md [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
                               />
                               <button
                                 type="button"
@@ -202,8 +202,8 @@
                   <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
                     <div className="max-w-md space-y-4">
                       <dl className="space-y-0.5 text-md text-gray-700">
-                        <div className="flex justify-end text-red-400 border-b mb-3">
-                          <button onClick={deleteCart}>Clear Cart</button>
+                        <div className="flex justify-end text-bgWolf border-b mb-3">
+                          <button onClick={deleteCart}>Vaciar carrito</button>
                         </div>
                         <div className="flex justify-between !text-lg font-medium">
                           <dt>Subtotal</dt>
@@ -220,14 +220,14 @@
                       </dl>
                       <div className="flex justify-end">
                         <Link
-                          className="group flex items-center justify-between gap-4 rounded-lg border border-current px-4 py-2 text-orange-600 transition-colors hover:bg-orange-600 focus:outline-none focus:ring active:bg-orange-500"
+                          className="group flex items-center justify-between gap-4 rounded-lg border border-current px-4 py-2 text-bgWolf transition-colors hover:bg-bgWolf focus:outline-none focus:ring active:bg-bgWolf"
                           href="/products"
                         >
                           <span className="font-medium transition-colors group-hover:text-white">
-                            Continue shopping
+                            Continuar Comprando
                           </span>
                           <span
-                            className="shrink-0 rounded-full border border-orange-600 bg-white p-2 group-active:border-orange-500"
+                            className="shrink-0 rounded-full border border-bgWolf bg-white p-2 group-active:border-orange-500"
                           >
                             <svg
                               className="h-4 w-4 rtl:rotate-180"
@@ -255,8 +255,8 @@
           {!products.length ? '' : (
             <div className="md:1/3 mt-16 md:mt-6">
               <header className="text-start flex flex-col w-full">
-                <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">Shipping details</h1>
-                <p className="mt-2 text-text text-lg">We use your account details for shipping.</p>
+                <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">Detalles de envio</h1>
+                <p className="mt-2 text-text text-lg">Usaremos tus datos para realizar el envio.</p>
               </header>
               <div className="mx-auto max-w-xl p-4 border shadow-xl h-[400px] my-3">
                 <div className="space-y-5">
@@ -266,31 +266,31 @@
                       <input type="email" name="email" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" value={session.user.email} placeholder='Email' />
                     </div>
                     <div className="col-span-6">
-                      <label className="mb-1 block text-sm font-medium text-text">Full Name</label>
-                      <input type="text" name="name" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" value={session.user.name} placeholder='Full name' />
+                      <label className="mb-1 block text-sm font-medium text-text">Nombre Completo</label>
+                      <input type="text" name="name" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" value={session.user.name} placeholder='Nombre y Apellido' />
                     </div>
                     <div className="col-span-12">
-                      <label className="mb-1 block text-sm font-medium text-text">Address</label>
-                      <input type="text" name="address" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="1864 Main Street" value={address} onChange={ev => setAddress(ev.target.value)} required />
+                      <label className="mb-1 block text-sm font-medium text-text">Direccion</label>
+                      <input type="text" name="address" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="Pasaje salta 1315" value={address} onChange={ev => setAddress(ev.target.value)} required />
                     </div>
                     <div className="col-span-6">
-                      <label className="mb-1 block text-sm font-medium text-text">City</label>
+                      <label className="mb-1 block text-sm font-medium text-text">Ciudad</label>
                       <input type="text" name="city" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="" value={city} onChange={ev => setCity(ev.target.value)} required />
                     </div>
                     <div className="col-span-4">
-                      <label className="mb-1 block text-sm font-medium text-text">State</label>
+                      <label className="mb-1 block text-sm font-medium text-text">Provincia</label>
                       <input type="text" name="state" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="" value={country} onChange={ev => setCountry(ev.target.value)} required />
                     </div>
                     <div className="col-span-2">
-                      <label className="mb-1 block text-sm font-medium text-text">Zip</label>
+                      <label className="mb-1 block text-sm font-medium text-text">CP</label>
                       <input type="text" name="zip" className="block w-full rounded-md p-3 border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="" value={zip} onChange={ev => setZip(ev.target.value)} required />
                     </div>
                     <div className="col-span-12 text-center w-full">
                       <button
                         onClick={stripeCheckout}
-                        className="disabled block rounded bg-secondary px-5 py-3 text-md text-text transition hover:bg-purple-300 w-full"
+                        className="disabled block rounded bg-bgWolf px-5 py-3 text-md text-text transition hover:bg-bgWolf hover:text-white w-full"
                       >
-                        Checkout
+                        Terminar Pedido
                       </button>
                     </div>
                   </div>
@@ -305,12 +305,12 @@
     return (
       <div className="grid h-screen px-4 bg-white place-content-center">
         <div className="text-center">
-          <p className="mt-4 text-text text-2xl">You should sign Up to view cart Items</p>
+          <p className="mt-4 text-bgWolf rounded-md border border-accent px-6 py-3 text-2xl">Debes ingresar para ver el carrito</p>
           <button
             onClick={() => signIn('google')}
-            className="inline-block px-5 py-3 mt-6 text-sm font-medium text-text bg-primary rounded hover:bg-primary focus:outline-none focus:ring"
+            className="inline-block px-5 py-3 mt-6 text-sm font-medium text-white bg-colWolf rounded hover:bg-bgWolf focus:outline-none focus:ring"
           >
-            Login / Register
+            Inicio / Registro
           </button>
         </div>
       </div>

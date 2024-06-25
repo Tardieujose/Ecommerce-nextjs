@@ -11,8 +11,6 @@ const inter = Poppins({
   weight: '500'
 });
 
-const categories = [1, 2, 3, 4, 5, 6];
-
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>

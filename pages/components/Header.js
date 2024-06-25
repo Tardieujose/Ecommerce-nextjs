@@ -50,11 +50,11 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/products' ? 'text-bgWolf' : ""}`} href="/products">
-                    All Products
+                  <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/products' ? active : inActive}`} href="/products">
+                    Todos los Productos
                   </Link>
                 </li>
-                <li className="hidden 2xl:table">
+                <li className="hidden 3xl:table">
                   <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/categories' ? active : inActive}`} href="/categories">
                     Categorias
                   </Link>
@@ -73,9 +73,9 @@ export default function Header() {
                 <div className="sm:flex sm:gap-2 border-r pr-4">
                   <button
                     onClick={() => signIn('google')}
-                    className="inline-block px-5 py-3 text-sm font-medium text-text hover:bg-bgWolf rounded-md focus:outline-none focus:ring"
+                    className="inline-block px-5 py-3 text-lg font-medium text-bgWolf hover:bg-bgWolf hover:text-white rounded-md focus:outline-none focus:ring"
                   >
-                    Login / Register
+                    Inicio / Registro
                   </button>
                 </div>
               )}
@@ -121,7 +121,7 @@ export default function Header() {
                       </li>
                       <li>
                         <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/products' ? active : inActive}`} href="/products" onClick={toggleMobileNav}>
-                          All Products
+                          Todos los Productos
                         </Link>
                       </li>
                         <MobileMenu categories={categories} />

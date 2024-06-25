@@ -36,7 +36,7 @@ export default function Collection({ product }) {
   return (
     <>
       <section>
-        <div className="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4 xl:gap-y-8">
+        <div className="mt-6 ml-24 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4 xl:gap-y-8">
           <div className="mx-auto sm:px-1 sm:my-auto lg:px-2 group block overflow-hidden border border-accent rounded-xl border-opacity-100">
             <header className="text-center">
               <h2 className="text-sm font-bold text-gray-900 sm:text-lg border-b p-3">

@@ -47,11 +47,11 @@ export default function Hero({ product }) {
                   </div>
                 </div>
                 <div className="flex gap-4 items-center max-sm:justify-center max-sm:mt-6">
-                  <button className="mt-6 inline-block rounded-md border border-transparent bg-primary px-6 py-3 text-center font-medium text-white hover:text-accent" onClick={addItemToCart}>
+                  {/* <button className="mt-6 inline-block rounded-md border border-transparent bg-primary px-6 py-3 text-center font-medium text-white hover:text-accent" onClick={addItemToCart}>
                     Add to cart
-                  </button>
-                  <Link href="/products" className="mt-6 inline-block rounded-md  bg-transparent border border-accent px-6 py-3 text-center font-medium text-accent hover:text-primary hover:border-primary">
-                    All Products
+                  </button> */}
+                  <Link href="/products" className="mt-6 inline-block rounded-md  bg-transparent border border-accent px-6 py-3 text-center font-medium text-accent hover:bg-bgWolf hover:text-white hover:border-bgWolf">
+                    Todos los Productos
                   </Link>
                 </div>
               </div>
