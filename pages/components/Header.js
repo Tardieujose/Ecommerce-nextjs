@@ -37,8 +37,8 @@ export default function Header() {
       <header className="bg-white sticky top-0 z-40 w-full px-2 md:px-4">
         <div className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 border-b border-bgWolf border-opacity-40">
           <Link className="flex gap-1 items-center text-text font-medium text-lg hover:text-bgWolf" href="/">
-            <Image src="/BadWolf.png" alt="BadWolf" width={300} height={300} className="w-14 h-14" />
-            <span>Bad Wolf</span>
+            <Image src="/BadWolf.png" alt="Myeccomerce" width={300} height={300} className="w-14 h-14" />
+            <span>My eccomerce</span>
           </Link>
 
           <div className="flex flex-1 items-center justify-end md:justify-between p-10 font-semibold">
